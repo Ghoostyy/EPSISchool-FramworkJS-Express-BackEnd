@@ -13,7 +13,7 @@ const displayQcmJson = (req, res) => {
 };
 
 const displayFormQcm = (req, res) => {
-    res.render('qcm', { isNewQcm: true });
+    res.render('newqcm'); // Ensure the template name matches the file name
 };
 
 
@@ -23,10 +23,10 @@ const createNewQcm = (req, res) => {
         subject: req.body.subject,
         nbpoints: req.body.nbpoints,
         question: req.body.question,
-        options: req.body.options,
+        options: req.body.options.split(',').map(option => option.trim()), // Split options by comma and trim spaces
     };
 
-    addQcm(newQcmDetails); // Add the new QCM to the list
+    addQcm(newQcmDetails);
 
     // Redirect to the detailed view of the newly created QCM
     const newlyCreatedQcm = qcms[qcms.length - 1];

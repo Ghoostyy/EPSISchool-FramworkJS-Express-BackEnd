@@ -1,33 +1,29 @@
 <%- include('header') -%>
 
 <div>
-    <% if (qcm || isNewQcm) { %>
-        <% if (isNewQcm) { %>
-            <h2>Create a New QCM</h2>
-            <!-- Add your form for creating a new QCM here -->
-        <% } else { %>
-            <h2><%= qcm.name %></h2>
-            <p><%= qcm.subject %></p>
-            <p><%= qcm.nbpoints %> points</p>
-            <form action="/qcms/<%= qcm.id %>/submit" method="POST">
-                <% if (qcm.question) { %>
-                    <label for="question"><%= qcm.question %></label><br>
-                    <% if (qcm.options && qcm.options.length > 0) { %>
-                        <% for (let option of qcm.options) { %>
-                            <input type="radio" id="<%= option %>" name="answer" value="<%= option %>">
-                            <label for="<%= option %>"><%= option %></label><br>
-                        <% } %>
-                        <input type="submit" value="Submit Answer">
-                    <% } else { %>
-                        <p>No options available for this QCM.</p>
+    <% if (qcm) { %>
+        <h2><%= qcm.name %></h2>
+        <p><%= qcm.subject %></p>
+        <p><%= qcm.nbpoints %> points</p>
+        <form action="/qcms/<%= qcm.id %>/submit" method="POST">
+            <% if (qcm.question) { %>
+                <label for="question"><%= qcm.question %></label><br>
+                <% if (qcm.options && qcm.options.length > 0) { %>
+                    <% for (let option of qcm.options) { %>
+                        <input type="radio" id="<%= option %>" name="answer" value="<%= option %>">
+                        <label for="<%= option %>"><%= option %></label><br>
                     <% } %>
+                    <input type="submit" value="Submit Answer">
                 <% } else { %>
-                    <p>No question available for this QCM.</p>
+                    <p>No options available for this QCM.</p>
                 <% } %>
-            </form>
-        <% } %>
+            <% } else { %>
+                <p>No question available for this QCM.</p>
+            <% } %>
+        </form>
     <% } else { %>
-        <p>QCM not found.</p>
+        <h2>Create a New QCM</h2>
+        <!-- Add your form for creating a new QCM here -->
     <% } %>
 </div>
 
