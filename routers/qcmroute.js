@@ -1,27 +1,31 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+    displayQcms,
+    displayFormQcm,
+    createNewQcm,
+    displayQcmJson,
+    displayQcmDetailed,
+    handleQcmSubmission,
+} = require('../controllers/qcms');
 
-const {displayQcms, displayFormQcm, createNewForm, displayQcmJson, displayQcmDetailed} = require('../controllers/qcms');
-
-
-// DEFINITION DES ROUTES
-
+// Display QCMs list
 router.get('/', displayQcms);
 
-//point d'acces pour afficher le detail d'un QCM
-router.get('/:qcmid', displayQcmDetailed)
-// permet l'utilisation de localhost:3000/qcms/2
-// qui affiche le qcm ayant pour id 2
-// req.params.qcmid
+// Display detailed QCM
+router.get('/:qcmid', displayQcmDetailed);
+
+// Handle QCM submission
+router.post('/:qcmid/submit', handleQcmSubmission);
+
+// Display JSON representation of QCMs
 router.get('/json', displayQcmJson);
 
-router.get('/new', displayFormQcm); //handler
+// Display form for creating a new QCM
+router.get('/new', displayFormQcm);
 
-router.post('/new', createNewForm);
-
-
-//FIN DES ROUTES
-
+// Handle new QCM creation
+router.post('/new', createNewQcm);
 
 module.exports = router;

@@ -1,8 +1,5 @@
-<!-- rajouter les headers
- -->
+<%- include('header') -%>
 
-<!--  mettre a jour le sujet et le nb de points
- -->
 <form action="/qcms/new" method="POST">
     <div>
         <label for="name">Nom</label>
@@ -16,7 +13,20 @@
         <label for="nbpoints">Nb points</label>
         <input type="number" id="nbpoints" name="nbpoints">
     </div>
+    <div>
+        <label for="question">Question</label>
+        <textarea id="question" name="question"></textarea>
+    </div>
+    <div>
+        <label for="option1">Option 1</label>
+        <input type="text" id="option1" name="options[]">
+    </div>
+    <div>
+        <label for="option2">Option 2</label>
+        <input type="text" id="option2" name="options[]">
+    </div>
+    <!-- Repeat for additional options as needed -->
     <input type="submit" value="Create">
 </form>
 
-<!-- ajouter les champs name, subject et nbpoints -->
+<%- include('footer') -%>
