@@ -1,12 +1,13 @@
+// id, name, theme, subject, author, nbpoints
+
 class Qcm {
+
     #id;
     #name;
     #theme;
     #subject;
     #author;
     #nbpoints;
-    #question;  // Add property for the question
-    #options;   // Add property for options
 
     constructor(qcmToCreate) {
         this.#id = qcmToCreate.id;
@@ -15,31 +16,39 @@ class Qcm {
         this.#subject = qcmToCreate.subject;
         this.#author = qcmToCreate.author;
         this.#nbpoints = qcmToCreate.nbpoints;
-        this.#question = qcmToCreate.question; // Initialize the question
-        this.#options = qcmToCreate.options || []; // Initialize the options (default to an empty array)
     }
 
-    // Existing getters and setters...
-
-    get question() {
-        return this.#question;
+    get id() {
+        return this.#id;
     }
 
-    set question(value) {
-        this.#question = value;
+    get name() {
+        return this.#name;
     }
 
-    get options() {
-        return this.#options;
+    set name(value) {
+        this.#name = value;
     }
 
-    set options(value) {
-        this.#options = value;
+    get theme() {
+        return this.#theme;
+    }
+
+    get subject() {
+        return this.#subject;
+    }
+
+    get author() {
+        return this.#author;
+    }
+
+    get nbpoints() {
+        return this.#nbpoints;
     }
 
     toJSON(key) {
         console.log(key);
-        return { id: this.#id, name: this.#name };
+        return {id: this.#id, name: this.#name};
     }
 }
 
