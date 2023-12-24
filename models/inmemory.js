@@ -10,22 +10,22 @@ const qcms = [
         subject: "Javascript",
         questions: [
             {
-                name: "Qu'est-ce que l'instruction 'for' utilisée pour faire en Javascript ?",
+                name: "Comment JavaScript facilite-t-il le développement d'applications web interactives et quels sont ses principaux rôles dans la création d'expériences utilisateur dynamiques?",
                 answers: [
                     {
-                        name: "Itération",
+                        name: "JavaScript est principalement utilisé pour la conception de bases de données.",
+                        correct: false,
+                    },
+                    {
+                        name: "JavaScript est principalement utilisé pour styliser les pages web.",
+                        correct: false,
+                    },
+                    {
+                        name: "JavaScript permet l'ajout de comportements interactifs aux pages web, réagissant aux actions de l'utilisateur.",
                         correct: true,
                     },
                     {
-                        name: "Condition",
-                        correct: false,
-                    },
-                    {
-                        name: "Déclaration de fonction",
-                        correct: false,
-                    },
-                    {
-                        name: "Importation de modules",
+                        name: "JavaScript est utilisé exclusivement pour la création de serveurs web.",
                         correct: false,
                     },
                 ],
@@ -39,22 +39,22 @@ const qcms = [
         subject: "Angular",
         questions: [
             {
-                name: "Qu'est-ce qu'un service dans le contexte d'Angular ?",
+                name: "Quel est le rôle principal d'un framework frontend dans le développement d'applications web modernes?",
                 answers: [
                     {
-                        name: "Un singleton partagé entre les composants",
+                        name: "Les frameworks frontend facilitent la création d'interfaces utilisateur interactives et réactives.",
                         correct: true,
                     },
                     {
-                        name: "Une directive structurelle",
+                        name: "Les frameworks frontend sont principalement utilisés pour gérer les bases de données d'une application.",
                         correct: false,
                     },
                     {
-                        name: "Une classe de modèle",
+                        name: "Les frameworks frontend sont principalement utilisés pour styliser les pages web.",
                         correct: false,
                     },
                     {
-                        name: "Un conteneur Docker spécialisé",
+                        name: "Les frameworks frontend sont exclusivement utilisés pour gérer les opérations côté serveur.",
                         correct: false,
                     },
                 ],
@@ -68,22 +68,22 @@ const qcms = [
         subject: "Express",
         questions: [
             {
-                name: "Qu'est-ce que Express apporte à Node.js dans le développement backend ?",
+                name: "Quel est le rôle principal d'un framework backend dans le développement d'applications web modernes?",
                 answers: [
                     {
-                        name: "Middleware pour le traitement des requêtes",
+                        name: "Les frameworks backend sont principalement utilisés pour définir le style visuel des pages web.",
+                        correct: false,
+                    },
+                    {
+                        name: "Les frameworks backend facilitent le développement de la logique métier, de la gestion des données et des opérations côté serveur.",
                         correct: true,
                     },
                     {
-                        name: "Gestionnaire de bases de données intégré",
+                        name: "Les frameworks backend sont principalement utilisés pour gérer les interactions utilisateur côté client.",
                         correct: false,
                     },
                     {
-                        name: "Système de template pour le rendu côté serveur",
-                        correct: false,
-                    },
-                    {
-                        name: "Compilateur TypeScript intégré",
+                        name: "Les frameworks backend sont exclusivement utilisés pour gérer les animations et les transitions sur les pages web.",
                         correct: false,
                     },
                 ],
