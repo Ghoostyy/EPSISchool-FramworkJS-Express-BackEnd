@@ -1,19 +1,135 @@
 <%- include('header') -%>
 
-<div>
-    <%= qcm.name %>
+<div class="qcm-info">
+    <h1><%= qcm.name %></h1>
+    <p><strong>Sujet:</strong> <%= qcm.subject %></p>
+    <p><strong>Points:</strong> <%= qcm.nbpoints %></p>
 </div>
 
-<div>
-    <%= qcm.subject %>
+<div class="questions-container">
+    <% for (let question of qcm.questions) { %>
+        <div class="question">
+            <h2><%= question.name %></h2>
+            
+            <div class="answers">
+                <% for (let answer of question.answers) { %>
+                    <div class="answer" data-correct="<%= answer.correct %>">
+                        <%= answer.name %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    <% } %>
 </div>
 
-<div>
-    <%= qcm.nbpoints %>
-</div>
+<style>
 
-<div>
-    <%= qcm.author %>
-</div>
+    .question {
+        background: #fff;
+        color: #333;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .answer {
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        background: #f8f8f8;
+    }
+
+    .correct {
+        background: #dff0d8;
+        border-color: #d6e9c6;
+        color: #408b41;
+    }
+
+    .incorrect {
+        background: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
+
+    .selected {
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var answerElements = document.querySelectorAll('.answer');
+        var userScore = 0;
+        var totalPoints = <%= qcm.nbpoints %>;
+        var answeredQuestions = <%= qcm.questions.length %>;
+        var answeredCorrectly = new Set();
+        var answeredIncorrectly = new Set();
+
+        answerElements.forEach(function (answerElement) {
+            answerElement.addEventListener('click', handleClick);
+        });
+
+        function handleClick() {
+            var isCorrect = JSON.parse(this.getAttribute('data-correct'));
+
+            if (!this.classList.contains('selected')) {
+                if (isCorrect) {
+                    this.classList.add('correct');
+                    userScore += calculatePoints(this);
+                    answeredCorrectly.add(this);
+                } else {
+                    var correctAnswer = getCorrectAnswer(this);
+                    if (correctAnswer) {
+                        correctAnswer.classList.add('correct-answered-incorrectly');
+                    }
+                    this.classList.add('incorrect');
+                    answeredIncorrectly.add(this);
+                }
+                this.classList.add('selected');
+                displayUserScore();
+            }
+        }
+
+        function calculatePoints(clickedAnswer) {
+            var correctAnswer = getCorrectAnswer(clickedAnswer);
+            if (correctAnswer && correctAnswer.classList.contains('correct-answered-incorrectly')) {
+                return 0;
+            }
+            return totalPoints / answeredQuestions;
+        }
+
+        function displayUserScore() {
+            var scoreElement = document.getElementById('user-score');
+            if (scoreElement) {
+                scoreElement.textContent = 'Note : ' + userScore;
+            }
+
+            answeredCorrectly.forEach(function (element) {
+                element.classList.add('answered-correctly');
+            });
+
+            answeredIncorrectly.forEach(function (element) {
+                var correctAnswer = getCorrectAnswer(element);
+                if (correctAnswer) {
+                    correctAnswer.classList.add('correct-answered-incorrectly');
+                }
+            });
+        }
+
+        function getCorrectAnswer(clickedAnswer) {
+            var questionDiv = clickedAnswer.closest('.question');
+            var correctAnswerElement = questionDiv.querySelector('.answer[data-correct="true"]');
+            return correctAnswerElement;
+        }
+    });
+</script>
+
+
+
+
+
+<div id="user-score"> Note : </div>
+<br>
+<a href="../qcms">Retour</a>
 
 <%- include('footer') -%>
